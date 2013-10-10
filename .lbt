@@ -1,16 +1,20 @@
 {
-    "target_name": {
+    "defines": [
+        ".DEFAULT_GOAL := bin/nightwing"
+    ],
+
+    "nightwing": {
         "type": "source",
         "depends": [],
         "root": "./",
-        "target": "bin/main",
+        "target": "bin/nightwing",
         "sources" : [
-	    "*.cc",
-            "src/*.cc"
+	       "*.cc",
+           "src/*.cc"
         ],
         "ignores": [
-            "./thirdparty",
-	    "./_old"
+           "./thirdparty",
+	       "./_old"
         ],
         "dependency_command": "c++ -MM",
         "compiler": {
@@ -20,10 +24,27 @@
                 "ggdb"
             ],
             "includes": [
-                "thirdparty/"
             ],
-            "pkg_configs": ["xcb"],
+            "pkg_configs": [
+                "xcb"
+            ],
             "obj_path": "build/"
         }
+    },
+
+    "clean": {
+        "type": "exec",
+        "depends": [],
+        "commands": [
+            "rm -f obj/*.o obj/lib/*.o bin/nightwing"
+        ]
+    },
+
+    "make": {
+        "type": "exec",
+        "depends": [],
+        "commands": [
+            "lbtcli -m .lbt"
+        ]
     }
 }
