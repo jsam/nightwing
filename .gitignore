@@ -2,6 +2,7 @@
 nightwing
 bin/
 obj/
+build/
 #*
 *#*
 .#
